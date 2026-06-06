@@ -505,9 +505,161 @@ footer{
   .photo-cards{display:none}
   footer{flex-direction:column;align-items:flex-start}
 }
+
+/* ── TYPING ANIMATION ── */
+.hero-h1{min-height:1.8em}
+.name-cursor{
+  display:inline-block;
+  width:3px;
+  background:var(--accent);
+  margin-left:2px;
+  animation:cursorBlink 0.75s step-end infinite;
+  border-radius:1px;
+  vertical-align:text-bottom;
+}
+@keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── PARTICLE DOTS ── */
+#particles{
+  position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;
+}
+.particle{
+  position:absolute;border-radius:50%;
+  background:var(--accent);
+  animation:particleFloat linear infinite;
+  opacity:0;
+}
+@keyframes particleFloat{
+  0%{transform:translateY(100vh) scale(0);opacity:0}
+  10%{opacity:0.4}
+  90%{opacity:0.15}
+  100%{transform:translateY(-10vh) scale(1);opacity:0}
+}
+
+/* ── GLITCH EFFECT on hover ── */
+.hero-h1:hover .name-line1{animation:glitch 0.4s ease both}
+@keyframes glitch{
+  0%{text-shadow:none;transform:none}
+  20%{text-shadow:2px 0 var(--accent3),-2px 0 var(--teal);transform:translateX(2px)}
+  40%{text-shadow:-2px 0 var(--accent3),2px 0 var(--teal);transform:translateX(-2px)}
+  60%{text-shadow:1px 0 var(--accent3),-1px 0 var(--teal);transform:translateX(1px)}
+  80%{text-shadow:none;transform:translateX(-1px)}
+  100%{text-shadow:none;transform:none}
+}
+
+/* ── MORPHING ROLE TEXT ── */
+.hero-role{position:relative;overflow:hidden}
+.role-text{display:inline-block;animation:none}
+.role-text.slide-out{animation:slideOut 0.4s ease forwards}
+.role-text.slide-in{animation:slideIn 0.4s ease forwards}
+@keyframes slideOut{to{transform:translateY(-100%);opacity:0}}
+@keyframes slideIn{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* ── FLOATING CARDS ── */
+.photo-card{animation:cardFloat 4s ease-in-out infinite}
+.photo-card:nth-child(1){animation-delay:0s}
+.photo-card:nth-child(2){animation-delay:1.3s}
+.photo-card:nth-child(3){animation-delay:2.6s}
+@keyframes cardFloat{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+
+/* ── STAT COUNTER GLOW ── */
+.hero-stat-n{
+  position:relative;
+  text-shadow:0 0 20px rgba(37,99,235,0.3);
+}
+
+/* ── SKILL CARD ENTRANCE ── */
+.skill-card.in{
+  animation:skillPop 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes skillPop{
+  from{opacity:0;transform:scale(0.85) translateY(20px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+/* ── SCROLL PROGRESS BAR ── */
+#scrollBar{
+  position:fixed;top:0;left:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--teal));
+  z-index:9999;width:0%;transition:width 0.1s linear;
+  box-shadow:0 0 8px rgba(37,99,235,0.5);
+}
+
+/* ── PROJECT CARD TILT ── */
+.proj-card{transform-style:preserve-3d;perspective:1000px}
+.proj-card-top{
+  transition:transform 0.4s ease;
+}
+
+/* ── AVATAR RING RAINBOW ── */
+.photo-ring{
+  background:linear-gradient(var(--bg),var(--bg)) padding-box,
+    conic-gradient(from 0deg,var(--accent),var(--teal),var(--accent2),var(--accent3),var(--accent)) border-box;
+  border:3px solid transparent;
+  animation:ringRotate 4s linear infinite;
+  padding:3px;
+}
+@keyframes ringRotate{
+  from{filter:hue-rotate(0deg)}
+  to{filter:hue-rotate(360deg)}
+}
+
+/* ── NAV LINK ACTIVE HIGHLIGHT ── */
+.nav-links a.active{color:var(--accent)}
+.nav-links a.active::after{transform:scaleX(1)}
+
+/* ── WAVE GREETING ── */
+.wave{
+  display:inline-block;
+  animation:wave 2.5s ease-in-out 1.5s both;
+  transform-origin:70% 70%;
+}
+@keyframes wave{
+  0%,100%{transform:rotate(0deg)}
+  10%{transform:rotate(14deg)}
+  20%{transform:rotate(-8deg)}
+  30%{transform:rotate(14deg)}
+  40%{transform:rotate(-4deg)}
+  50%{transform:rotate(10deg)}
+  60%{transform:rotate(0deg)}
+}
+
+/* ── SECTION HEADING UNDERLINE DRAW ── */
+.s-h.in{
+  animation:headingIn 0.7s ease both;
+}
+@keyframes headingIn{
+  from{opacity:0;transform:translateX(-20px)}
+  to{opacity:1;transform:none}
+}
+
+/* ── CONTACT ITEM SLIDE ── */
+.contact-item.in{
+  animation:slideRight 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes slideRight{
+  from{opacity:0;transform:translateX(-30px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* ── EXP TIMELINE GLOW ── */
+.exp-card.in::before{
+  box-shadow:0 0 0 4px rgba(37,99,235,0.15),0 0 12px rgba(37,99,235,0.3);
+}
+
+/* ── BACKGROUND MESH ANIMATION ── */
+.hero::before{
+  animation:bgFloat 8s ease-in-out infinite, meshDrift 20s ease-in-out infinite alternate;
+}
+@keyframes meshDrift{
+  from{background-position:0% 0%}
+  to{background-position:100% 100%}
+}
 </style>
 </head>
 <body>
+<div id="scrollBar"></div>
+<canvas id="particles" style="position:fixed;inset:0;pointer-events:none;z-index:0"></canvas>
 
 <!-- NAV -->
 <nav>
@@ -530,9 +682,12 @@ footer{
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge"><div class="hero-badge-dot"></div>Open to Opportunities</div>
-    <h1 class="hero-h1">AbdElrahman<br><em>Elsayed Nawar</em></h1>
-    <p class="hero-role">Backend Developer · Node.js &amp; Java Specialist</p>
+    <div class="hero-badge"><div class="hero-badge-dot"></div><span class="wave">👋</span> Open to Opportunities</div>
+    <h1 class="hero-h1" id="heroName">
+      <span class="name-line1" id="nameLine1"></span><br>
+      <em class="name-line2" id="nameLine2"></em>
+    </h1>
+    <p class="hero-role"><span class="role-text" id="roleText">Backend Developer · Node.js &amp; Java Specialist</span></p>
     <p class="hero-desc">Computer Engineering student at Alexandria University with professional experience building scalable backend services supporting 100K+ active users. Expert in Express.js, NestJS, Spring Boot, and clean architecture design patterns.</p>
     <div class="hero-btns">
       <a href="#projects" class="btn-prim">View Projects ↓</a>
@@ -637,6 +792,7 @@ footer{
           <div class="proj-name">JetStay — Flight &amp; Hotel Booking</div>
           <p class="proj-desc">Full-stack booking platform with JWT &amp; Google OAuth authentication, role-based access (users, hotel admins, airline admins), advanced search, booking, cancellation, and secure payment workflows.</p>
           <div class="proj-tags"><span class="proj-tag">Spring Boot</span><span class="proj-tag">React</span><span class="proj-tag">MySQL</span><span class="proj-tag">JWT</span><span class="proj-tag">OAuth</span></div>
+          <a href="https://github.com/abdonaware" class="proj-link">View on GitHub →</a>
         </div>
       </div>
 
@@ -650,6 +806,7 @@ footer{
           <div class="proj-name">Producer–Consumer Simulation</div>
           <p class="proj-desc">Real-time simulation using Java multithreading and WebSocket. Applied Producer–Consumer, Singleton, Observer, Snapshot, and Concurrency patterns to ensure scalability and consistency.</p>
           <div class="proj-tags"><span class="proj-tag">Java</span><span class="proj-tag">Spring Boot</span><span class="proj-tag">WebSocket</span><span class="proj-tag">React</span></div>
+          <a href="https://github.com/abdonaware" class="proj-link">View on GitHub →</a>
         </div>
       </div>
 
@@ -663,6 +820,7 @@ footer{
           <div class="proj-name">InstaMail — Real-Time Email Platform</div>
           <p class="proj-desc">Live inbox updates using Server-Sent Events (SSE). Applied the Proxy Design Pattern to rate-limit requests and improve system stability.</p>
           <div class="proj-tags"><span class="proj-tag">Spring Boot</span><span class="proj-tag">SSE</span><span class="proj-tag">React</span><span class="proj-tag">Proxy Pattern</span></div>
+          <a href="https://github.com/abdonaware" class="proj-link">View on GitHub →</a>
         </div>
       </div>
 
@@ -676,6 +834,7 @@ footer{
           <div class="proj-name">DoHub — Task Management System</div>
           <p class="proj-desc">Collaborative task system with real-time shared updates using SSE. JWT authentication and task tagging for secure team collaboration.</p>
           <div class="proj-tags"><span class="proj-tag">Spring Boot</span><span class="proj-tag">SSE</span><span class="proj-tag">JWT</span><span class="proj-tag">React</span></div>
+          <a href="https://github.com/abdonaware" class="proj-link">View on GitHub →</a>
         </div>
       </div>
 
@@ -689,6 +848,7 @@ footer{
           <div class="proj-name">Paint — Web Drawing Application</div>
           <p class="proj-desc">Drawing app with undo/redo using the Command pattern and persistent save/load (JSON, XML). Clean extensible architecture using multiple GoF design patterns.</p>
           <div class="proj-tags"><span class="proj-tag">Command Pattern</span><span class="proj-tag">GoF</span><span class="proj-tag">JSON</span><span class="proj-tag">XML</span></div>
+          <a href="https://github.com/abdonaware" class="proj-link">View on GitHub →</a>
         </div>
       </div>
 
@@ -760,6 +920,138 @@ footer{
 </footer>
 
 <script>
+// ── SCROLL PROGRESS ──
+const scrollBar = document.getElementById('scrollBar');
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  scrollBar.style.width = pct + '%';
+});
+
+// ── PARTICLE CANVAS ──
+(function(){
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+  function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  for(let i=0;i<40;i++) particles.push({
+    x: Math.random()*100,
+    y: Math.random()*100,
+    size: Math.random()*2+0.5,
+    speed: Math.random()*0.3+0.1,
+    opacity: Math.random()*0.3+0.05,
+    hue: Math.random()*40+200
+  });
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{
+      p.y -= p.speed;
+      if(p.y < -2) p.y = 102;
+      ctx.beginPath();
+      ctx.arc(p.x/100*W, p.y/100*H, p.size, 0, Math.PI*2);
+      ctx.fillStyle = `hsla(${p.hue},80%,60%,${p.opacity})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── TYPING ANIMATION ──
+(function(){
+  const line1 = 'AbdElrahman';
+  const line2 = 'Elsayed Nawar';
+  const el1 = document.getElementById('nameLine1');
+  const el2 = document.getElementById('nameLine2');
+  let i1=0, i2=0, phase=1;
+
+  // Cursor element
+  const cursor = document.createElement('span');
+  cursor.className = 'name-cursor';
+
+  function typeLine1(){
+    if(i1 <= line1.length){
+      el1.textContent = line1.slice(0,i1);
+      el1.appendChild(cursor);
+      i1++;
+      setTimeout(typeLine1, i1===1?600:55+Math.random()*35);
+    } else {
+      setTimeout(startLine2, 200);
+    }
+  }
+  function startLine2(){
+    el2.style.opacity='1';
+    el2.appendChild(cursor);
+    typeLine2();
+  }
+  function typeLine2(){
+    if(i2 <= line2.length){
+      el2.textContent = line2.slice(0,i2);
+      el2.appendChild(cursor);
+      i2++;
+      setTimeout(typeLine2, 60+Math.random()*40);
+    } else {
+      // Blink cursor then remove
+      setTimeout(()=>{ cursor.remove(); }, 2000);
+    }
+  }
+  setTimeout(typeLine1, 800);
+})();
+
+// ── MORPHING ROLE TEXT ──
+(function(){
+  const roles = [
+    'Backend Developer · Node.js &amp; Java Specialist',
+    'NestJS · Spring Boot · Express.js',
+    'Systems Architect · Design Patterns',
+    'Real-time Systems · WebSocket · SSE',
+    '100K+ Users Supported 🚀'
+  ];
+  let idx = 0;
+  const el = document.getElementById('roleText');
+  if(!el) return;
+  setInterval(()=>{
+    el.classList.add('slide-out');
+    setTimeout(()=>{
+      idx = (idx+1) % roles.length;
+      el.innerHTML = roles[idx];
+      el.classList.remove('slide-out');
+      el.classList.add('slide-in');
+      setTimeout(()=>el.classList.remove('slide-in'), 400);
+    }, 380);
+  }, 3000);
+})();
+
+// ── 3D TILT ON PROJECT CARDS ──
+document.querySelectorAll('.proj-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `translateY(-5px) rotateX(${-y*8}deg) rotateY(${x*8}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+    card.style.transition = 'transform 0.5s ease';
+    setTimeout(()=>card.style.transition='',500);
+  });
+});
+
+// ── ACTIVE NAV HIGHLIGHT ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const observer2 = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+}, {threshold:0.4});
+sections.forEach(s=>observer2.observe(s));
+
 // Hamburger
 const ham = document.getElementById('hamburger');
 const nav = document.getElementById('navLinks');
@@ -808,5 +1100,6 @@ document.querySelectorAll('.skill-card').forEach(card => {
   });
 });
 </script>
+
 </body>
 </html>
