@@ -416,7 +416,7 @@ nav{
 /* ── CONTACT ── */
 .contact-grid{
   display:grid;grid-template-columns:1fr 1fr;
-  gap:3rem;margin-top:2.5rem;
+  gap:2rem;margin-top:2.5rem;
 }
 .contact-items{display:flex;flex-direction:column;gap:1rem}
 .contact-item{
@@ -439,6 +439,7 @@ nav{
   background:var(--gradient);border-radius:16px;
   padding:2.5rem;color:#fff;
   position:relative;overflow:hidden;
+  height:100%;
 }
 .contact-panel::before{
   content:'';position:absolute;top:-30%;right:-20%;
@@ -493,7 +494,12 @@ footer{
   .nav-hire{display:none}
   .hamburger{display:flex}
   .section{padding:4.5rem 6%}
-  .contact-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr;gap:1.5rem}
+  .contact-panel{padding:2rem}
+  .contact-panel-h{font-size:1.25rem}
+  .contact-panel-p{font-size:0.82rem}
+  .contact-items{gap:0.75rem}
+  .contact-item{padding:0.9rem 1rem}
   .edu-card{grid-template-columns:1fr;gap:1.25rem}
   .edu-gpa-wrap{text-align:left}
   .exp-card{padding-left:2rem}
@@ -504,6 +510,10 @@ footer{
   .photo-ring{width:180px;height:180px}
   .photo-cards{display:none}
   footer{flex-direction:column;align-items:flex-start}
+  .contact-grid{grid-template-columns:1fr}
+  .contact-val{font-size:0.78rem}
+  .contact-panel{padding:1.5rem}
+  .contact-panel-btn{padding:0.7rem 1.4rem;font-size:0.78rem}
 }
 
 /* ── TYPING ANIMATION ── */
@@ -792,6 +802,7 @@ footer{
           <div class="proj-name">JetStay — Flight &amp; Hotel Booking</div>
           <p class="proj-desc">Full-stack booking platform with JWT &amp; Google OAuth authentication, role-based access (users, hotel admins, airline admins), advanced search, booking, cancellation, and secure payment workflows.</p>
           <div class="proj-tags"><span class="proj-tag">Spring Boot</span><span class="proj-tag">React</span><span class="proj-tag">MySQL</span><span class="proj-tag">JWT</span><span class="proj-tag">OAuth</span></div>
+          
         </div>
       </div>
 
@@ -805,6 +816,7 @@ footer{
           <div class="proj-name">Producer–Consumer Simulation</div>
           <p class="proj-desc">Real-time simulation using Java multithreading and WebSocket. Applied Producer–Consumer, Singleton, Observer, Snapshot, and Concurrency patterns to ensure scalability and consistency.</p>
           <div class="proj-tags"><span class="proj-tag">Java</span><span class="proj-tag">Spring Boot</span><span class="proj-tag">WebSocket</span><span class="proj-tag">React</span></div>
+          
         </div>
       </div>
 
@@ -818,6 +830,7 @@ footer{
           <div class="proj-name">InstaMail — Real-Time Email Platform</div>
           <p class="proj-desc">Live inbox updates using Server-Sent Events (SSE). Applied the Proxy Design Pattern to rate-limit requests and improve system stability.</p>
           <div class="proj-tags"><span class="proj-tag">Spring Boot</span><span class="proj-tag">SSE</span><span class="proj-tag">React</span><span class="proj-tag">Proxy Pattern</span></div>
+          
         </div>
       </div>
 
@@ -831,6 +844,7 @@ footer{
           <div class="proj-name">DoHub — Task Management System</div>
           <p class="proj-desc">Collaborative task system with real-time shared updates using SSE. JWT authentication and task tagging for secure team collaboration.</p>
           <div class="proj-tags"><span class="proj-tag">Spring Boot</span><span class="proj-tag">SSE</span><span class="proj-tag">JWT</span><span class="proj-tag">React</span></div>
+          
         </div>
       </div>
 
@@ -844,6 +858,7 @@ footer{
           <div class="proj-name">Paint — Web Drawing Application</div>
           <p class="proj-desc">Drawing app with undo/redo using the Command pattern and persistent save/load (JSON, XML). Clean extensible architecture using multiple GoF design patterns.</p>
           <div class="proj-tags"><span class="proj-tag">Command Pattern</span><span class="proj-tag">GoF</span><span class="proj-tag">JSON</span><span class="proj-tag">XML</span></div>
+          
         </div>
       </div>
 
